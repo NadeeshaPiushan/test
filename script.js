@@ -4,13 +4,20 @@ const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 // Function to update the digit display
 function updateDigit(digitElement, targetDigit) {
   let currentDigit = 0;
+  let startTime = null;
   const interval = setInterval(() => {
     digitElement.textContent = digits[currentDigit];
     currentDigit = (currentDigit + 1) % digits.length;
-    if (currentDigit === targetDigit) {
+
+    if (startTime === null) {
+      startTime = new Date().getTime();
+    }
+
+    const elapsedTime = new Date().getTime() - startTime;
+    if (currentDigit === targetDigit && elapsedTime >= 10000) {
       clearInterval(interval);
     }
-  }, 50);
+  }, 50); // Keep the original animation speed (50ms)
 }
 
 // Function to roll the three digits
@@ -31,3 +38,4 @@ function rollDigits() {
 // Add event listener to the "Role" button
 const rollButton = document.getElementById('rollButton');
 rollButton.addEventListener('click', rollDigits);
+
