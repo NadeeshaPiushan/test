@@ -14,7 +14,7 @@ function updateDigit(digitElement, targetDigit) {
     }
 
     const elapsedTime = new Date().getTime() - startTime;
-    if (currentDigit === targetDigit && elapsedTime >= 10000) {
+    if (currentDigit === targetDigit && elapsedTime >= 5000) {
       clearInterval(interval);
     }
   }, 50); // Keep the original animation speed (50ms)
